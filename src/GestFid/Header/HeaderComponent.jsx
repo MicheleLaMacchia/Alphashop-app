@@ -1,4 +1,5 @@
 import "./HeaderComponent.css";
+import { Link } from "react-router-dom";
 
 const HeaderComponent = () => {
   return (
@@ -8,9 +9,9 @@ const HeaderComponent = () => {
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-3 col-sm-4 col-5">
-                <a href="#" className="brand-wrap">
-                  <img src="#" className="logo" />
-                </a>
+                <Link className="brand-wrap" to="welcome">
+                  <img src="../logo.svg" className="logo" />
+                </Link>
               </div>
 
               <Search />
@@ -69,9 +70,9 @@ const Menu = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">
+            <Link className="nav-link" to="/clienti">
               Clienti
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
             <a href="#" className="nav-link">
@@ -104,16 +105,16 @@ const User = () => {
             <span className="notify">0</span>
           </div>
         </a>
-        <a href="#" className="widget-header mr-3">
+        <Link className="widget-header mr-3" to="/login">
           <div className="icon icon-sm rounded-circle border">
             <i className="fa fa-user"></i>
           </div>
-        </a>
+        </Link>
 
         <div className="text">
           <span className="text-muted">Benvenuto!</span>
           <div>
-            <a href="#">Logout</a> | <a href="#"> Registra</a>
+            <Link to="/logout">Logout</Link> | <a href="#"> Registra</a>
           </div>
         </div>
       </div>
