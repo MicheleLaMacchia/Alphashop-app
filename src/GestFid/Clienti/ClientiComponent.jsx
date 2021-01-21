@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./ClientiComponent.css";
 
 const ClientiComponent = () => {
-  const [clienti] = useState([
+  const [clienti, setClienti] = useState([
     {
       codfid: "5669857",
       nome: "Michele La Macchia",
@@ -36,6 +36,13 @@ const ClientiComponent = () => {
       data: "18/01/2021",
     },
   ]);
+
+  const elimina = (index) => {
+    console.log("elimina", index);
+    const newClienti = [...clienti];
+    newClienti.splice(index, 1);
+    setClienti(newClienti);
+  };
 
   return (
     <section className="container">
@@ -101,8 +108,8 @@ const ClientiComponent = () => {
             </tr>
           </thead>
           <tbody>
-            {clienti.map((cliente) => (
-              <tr>
+            {clienti.map((cliente, index) => (
+              <tr key={cliente.codfid}>
                 <td>{cliente.codfid}</td>
                 <td>{cliente.nome}</td>
                 <td>{cliente.indirizzo}</td>
@@ -116,7 +123,10 @@ const ClientiComponent = () => {
                   </button>
                 </td>
                 <td>
-                  <button className="btn btn-warning table-buttons">
+                  <button
+                    className="btn btn-warning table-buttons"
+                    onClick={() => elimina(index)}
+                  >
                     <i className="fa fa-minus" aria-hidden="true"></i> Elimina
                   </button>
                 </td>
