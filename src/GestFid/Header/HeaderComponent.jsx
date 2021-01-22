@@ -1,5 +1,6 @@
 import "./HeaderComponent.css";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import authservices from "../services/authservices";
 
 const HeaderComponent = () => {
   return (
@@ -110,16 +111,36 @@ const User = () => {
             <i className="fa fa-user"></i>
           </div>
         </Link>
-
-        <div className="text">
-          <span className="text-muted">Benvenuto!</span>
-          <div>
-            <Link to="/logout">Logout</Link> | <a href="#"> Registra</a>
-          </div>
-        </div>
+        <UserInfo />
       </div>
     </div>
   );
 };
 
-export default HeaderComponent;
+const UserInfo = () => {
+  if (authservices.isLogged()) {
+    return (
+      <div className="text">
+        <span className="text-muted">
+          Benvenuto {authservices.getUserInfo()}
+        </span>
+        <div>
+          {/* questo onClick l'ho inserito io non è previsto dal video*/}
+          <Link to="/logout" onClick={authservices.cleanUserInfo}>
+            Logout
+          </Link>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <Link className="widget-header mr-3" to="/registra">
+        <div className="icon icon-sm rounded-circle border">
+          <i className="fa fa-users"></i>
+        </div>
+      </Link>
+    );
+  }
+};
+
+export default withRouter(HeaderComponent);

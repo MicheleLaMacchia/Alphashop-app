@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ClientiComponent from "./Clienti/ClientiComponent";
 import FooterComponent from "./Footer/FooterComponent";
 import HeaderComponent from "./Header/HeaderComponent";
+import AuthRoute from "./Login/AuthRoute";
 import LoginComponent from "./Login/LoginComponent";
 import LogoutComponent from "./Logout/LogoutComponent";
 import WelcomeComponent from "./Welcome/Welcome";
@@ -15,8 +16,8 @@ const GestFidApp = () => {
           <Route path="/" exact component={LoginComponent} />
           <Route path="/login" component={LoginComponent} />
           <Route path="/logout" component={LogoutComponent} />
-          <Route path="/welcome/:userid" component={WelcomeComponent} />
-          <Route path="/clienti" component={ClientiComponent} />
+          <AuthRoute path="/welcome/:userid" component={WelcomeComponent} />
+          <AuthRoute path="/clienti" component={ClientiComponent} />
           <Route component={ErrorComponent} />
         </Switch>
         <FooterComponent />
