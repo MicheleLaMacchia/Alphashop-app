@@ -12,6 +12,9 @@ const WelcomeComponent = (props) => {
           Ciao, {props.match.params.userid}. Clicca{" "}
           <Link to="/clienti">qui</Link> per accedere alla lista dei clienti
         </p>
+        <button type="button" className="btn btn-primary">
+          Visualizza il saluto
+        </button>
       </section>
     </div>
   );
