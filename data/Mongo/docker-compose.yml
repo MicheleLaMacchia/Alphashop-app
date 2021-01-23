@@ -1,6 +1,6 @@
-version: '3.3'
+version: "3.3"
 
-networks: 
+networks:
   ntpgsql:
     driver: bridge
     ipam:
@@ -13,11 +13,11 @@ services:
     image: mongo
     restart: unless-stopped
     container_name: mongodb
-    volumes: 
+    volumes:
       - data-volume:/data/db
-    networks: 
-        ntpgsql:
-          ipv4_address: 172.22.0.2
+    networks:
+      ntpgsql:
+        ipv4_address: 172.22.0.2
     ports:
       - target: 27017
         published: 27017
@@ -25,8 +25,7 @@ services:
         mode: host
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 123_Stella
+      MONGO_INITDB_ROOT_PASSWORD: root
 
 volumes:
   data-volume:
-
