@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AuthenticationService from "../services/authservices";
+import { saveUserInfo } from "../services/authservices";
 import "./LoginComponent.css";
 
 const LoginComponent = (props) => {
@@ -10,7 +10,7 @@ const LoginComponent = (props) => {
 
   const login = () => {
     if (userId === "Michele" && password === "Michele") {
-      AuthenticationService.saveUserInfo(userId);
+      saveUserInfo(userId);
       props.history.push(`/welcome/${userId}`);
     } else {
       console.log("login failed");

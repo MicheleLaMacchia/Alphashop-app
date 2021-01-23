@@ -1,8 +1,8 @@
 import { Redirect, Route } from "react-router-dom";
-import Authservices from "../services/authservices";
+import { isLogged } from "../services/authservices";
 
 const AuthRoute = (props) => {
-  if (Authservices.isLogged()) {
+  if (isLogged()) {
     return <Route {...props} />;
   } else {
     return <Redirect to="/login" />;

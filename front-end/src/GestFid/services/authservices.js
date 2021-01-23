@@ -1,18 +1,15 @@
-class AuthenticationService {
-  saveUserInfo = (username) => sessionStorage.setItem("user", username);
+export const saveUserInfo = (username) =>
+  sessionStorage.setItem("user", username);
 
-  cleanUserInfo = () => sessionStorage.removeItem("user");
+export const cleanUserInfo = () => sessionStorage.removeItem("user");
 
-  getUserInfo = () => sessionStorage.getItem("user");
+export const getUserInfo = () => sessionStorage.getItem("user");
 
-  isLogged = () => {
-    let user = this.getUserInfo();
-    if (user === null) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-}
-
-export default new AuthenticationService();
+export const isLogged = () => {
+  let user = getUserInfo();
+  if (user === null) {
+    return false;
+  } else {
+    return true;
+  }
+};

@@ -1,6 +1,6 @@
 import "./HeaderComponent.css";
 import { Link, withRouter } from "react-router-dom";
-import authservices from "../services/authservices";
+import { isLogged, getUserInfo, cleanUserInfo } from "../services/authservices";
 
 const HeaderComponent = () => {
   return (
@@ -118,15 +118,13 @@ const User = () => {
 };
 
 const UserInfo = () => {
-  if (authservices.isLogged()) {
+  if (isLogged()) {
     return (
       <div className="text">
-        <span className="text-muted">
-          Benvenuto {authservices.getUserInfo()}
-        </span>
+        <span className="text-muted">Benvenuto {getUserInfo()}</span>
         <div>
           {/* questo onClick l'ho inserito io non è previsto dal video*/}
-          <Link to="/logout" onClick={authservices.cleanUserInfo}>
+          <Link to="/logout" onClick={cleanUserInfo}>
             Logout
           </Link>
         </div>
