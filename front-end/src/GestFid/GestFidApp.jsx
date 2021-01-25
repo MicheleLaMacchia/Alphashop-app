@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ClientiComponent from "./Clienti/ClientiComponent";
+import DatiClienteComponent from "./Clienti/InserisciCliente/DatiClienteComponent";
 import FooterComponent from "./Footer/FooterComponent";
 import HeaderComponent from "./Header/HeaderComponent";
 import AuthRoute from "./Login/AuthRoute";
@@ -17,6 +18,10 @@ const GestFidApp = () => {
           <Route path="/login" component={LoginComponent} />
           <Route path="/logout" component={LogoutComponent} />
           <AuthRoute path="/welcome/:userid" component={WelcomeComponent} />
+          <AuthRoute
+            path="/inscliente/:codfid"
+            component={DatiClienteComponent}
+          />
           <AuthRoute path="/clienti" component={ClientiComponent} />
           <Route component={ErrorComponent} />
         </Switch>
