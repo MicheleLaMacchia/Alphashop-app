@@ -11,6 +11,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import com.xantrix.webapp.controller.ClientiController;
@@ -59,9 +60,38 @@ public class ClientiControllerUnitTest {
 		
 		Clienti cliente = createClienti();
 		
-		Mono<Clienti> clienteMono = Mono.just(cliente);
+		Mono<Clienti> clientiMono = Mono.just(cliente);
 		
-		when(clientiService.Salva(cliente)).thenReturn(clienteMono);
+		when(clientiService.Salva(cliente)).thenReturn(clientiMono);
+		
+		webTestClient.post()
+			.uri("/api/clienti/inserisci")
+			.contentType(MediaType.APPLICATION_JSON)
+			.accept(MediaType.APPLICATION_JSON)
+			.body(clientiMono, Clienti.class)
+			.exchange()
+			.expectStatus().isCreated();
+	}
+	
+	@Test
+	@Order(2)
+	public void testGetCliByCode() throws Exception{
+		
+		Clienti cliente = createClienti();
+		
+		Mono<Clienti> clientiMono = Mono.just(cliente);
+		
+		when(clientiService.SelByCodfid("65000000")).thenReturn(clientiMono);
+
+		webTestClient.get()
+			.uri("/api/clienti/cerca/codice/65000000")
+			.exchange()
+			.expectStatus().isOk()
+			.expectBody()
+			.jsonPath("$").isNotEmpty()
+			.jsonPath("$.codfid").isEqualTo("65000000")
+			.jsonPath("$.nominativo").isEqualTo("Michele La Macchia")
+			.jsonPath("$.indirizzo").isEqualTo("Viale Monza 12");
 	}
 	
 }

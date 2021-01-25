@@ -117,3 +117,12 @@ db.clienti.deleteMany({
 });
 // eliminare tutti i documenti
 db.clienti.drop();
+// creare un indice per evitare recordi duplicati in ase all'codfid
+db.clienti.createIndex(
+  {
+    codfid: 1,
+  },
+  {
+    unique: true,
+  }
+);
