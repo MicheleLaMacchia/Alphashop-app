@@ -15,8 +15,12 @@ export const delClientiByCode = (codfid) => {
   return axios.delete(`${server}${baseUrl}/elimina/codfid/${codfid}`);
 };
 
+export const insCliente = (cliente) => {
+  return axios.post(`${server}${baseUrl}/inserisci`, cliente);
+};
+
 {
-  /*
+  /* stesse API inserite in modalità class component
 class ClientiService {
   state = {
     server: "http://localhost:5071",

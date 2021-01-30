@@ -31,7 +31,11 @@ const ClientiComponent = (props) => {
       })
       .catch((err) => {
         setErrWebApi(true);
-        setErrMsg(err.response.data.message);
+        setErrMsg(
+          err.response
+            ? err.response.data.message
+            : "Impossibile caricare i clienti"
+        );
       });
   };
 
@@ -65,6 +69,12 @@ const ClientiComponent = (props) => {
     props.history.push(`/inscliente/${codfid}`);
   };
 
+  const inserisci = () => {
+    console.log("inserimento di un nuovo cliente");
+
+    props.history.push(`/inscliente/-1`);
+  };
+
   const elimina = (codfid) => {
     console.log("elimina il cliente con il codfid: ", codfid);
 
@@ -94,6 +104,7 @@ const ClientiComponent = (props) => {
               <button
                 style={{ marginleft: "20px" }}
                 className="btn btn-success float-right"
+                onClick={inserisci}
               >
                 <i className="fa fa-plus"></i> Nuovo Cliente
               </button>
