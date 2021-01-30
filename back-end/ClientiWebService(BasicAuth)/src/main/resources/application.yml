@@ -1,0 +1,19 @@
+# ===============================================================
+# =     Clienti Web Service - Versione Base Reactor Web Flux    =
+# ===============================================================
+
+Server:
+  port: 5071
+  
+spring: 
+    application:
+      name: ClientiWebService
+    data:      mongodb:        authentication-database: admin
+        database: gestfid
+        host: localhost
+        password: WebClient
+        port: 27017
+        username: WebClient
+        
+logging:  level:    org.springframework.data.mongodb.ReactiveMongoTemplate: DEBUG
+        
