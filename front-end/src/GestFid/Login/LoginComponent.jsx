@@ -10,7 +10,7 @@ const LoginComponent = (props) => {
 
   const login = () => {
     if (userId === "Michele" && password === "Michele") {
-      saveUserInfo(userId);
+      saveUserInfo(userId, password);
       props.history.push(`/welcome/${userId}`);
     } else {
       console.log("login failed");

@@ -30,6 +30,11 @@ public class ClientiController
 	
 	@Autowired
 	private ClientiService clientiService;
+	
+	@GetMapping(value = "/auth", produces = "application/json")
+	public Mono<String> checkBasicAuth() {
+		return Mono.just("Autenticazione ok");
+	} 
 
 	@PostMapping(value = "/inserisci", produces = "application/json")
 	public ResponseEntity<Mono<Clienti>> insertCli(@RequestBody Clienti newCliente ) {
