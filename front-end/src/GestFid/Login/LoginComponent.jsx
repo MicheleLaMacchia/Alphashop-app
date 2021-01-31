@@ -1,23 +1,26 @@
 import { useState } from "react";
-import { saveUserInfo } from "../services/authservices";
+import { authUser, saveUserInfo } from "../services/authservices";
 import "./LoginComponent.css";
 
 const LoginComponent = (props) => {
-  const [userId, setUserId] = useState("Michele");
+  const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [, setIsLogged] = useState(false);
   const [isNotLogged, setIsNotLogged] = useState(false);
 
   const login = () => {
-    if (userId === "Michele" && password === "Michele") {
-      saveUserInfo(userId, password);
-      props.history.push(`/welcome/${userId}`);
-    } else {
-      console.log("login failed");
-      setIsLogged(false);
-      setIsNotLogged(true);
-    }
+    authUser(userId, password)
+      .then(() => {
+        saveUserInfo(userId, password);
+        props.history.push(`/welcome/${userId}`);
+      })
+      .catch(() => {
+        console.log("login failed");
+        setIsLogged(false);
+        setIsNotLogged(true);
+      });
   };
+
   const handleChange = (e) => {
     switch (e.target.name) {
       case "userId": {
