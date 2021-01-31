@@ -53,8 +53,8 @@ public class UtentiControllerTest
 	
 	String JsonData =  
 			"{\n" + 
-			"    \"userId\": \"Nicola\",\n" + 
-			"    \"password\": \"123Stella\",\n" + 
+			"    \"userId\": \"Michele\",\n" + 
+			"    \"password\": \"Michele\",\n" + 
 			"    \"attivo\": \"Si\",\n" + 
 			"    \"ruoli\": [\n" + 
 			"            \"USER\"\n" + 
@@ -75,14 +75,14 @@ public class UtentiControllerTest
 	@Test
 	public void B_testListUserByUserId() throws Exception
 	{
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/utenti/cerca/userid/Nicola")
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/utenti/cerca/userid/Michele")
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
 				  
 				.andExpect(jsonPath("$.id").exists())
 				.andExpect(jsonPath("$.userId").exists())
-				.andExpect(jsonPath("$.userId").value("Nicola"))
+				.andExpect(jsonPath("$.userId").value("Michele"))
 				.andExpect(jsonPath("$.password").exists())
 				.andExpect(jsonPath("$.attivo").exists())
 				.andExpect(jsonPath("$.attivo").value("Si"))
@@ -91,15 +91,15 @@ public class UtentiControllerTest
 				.andExpect(jsonPath("$.ruoli[0]").value("USER")) 
 				.andDo(print());
 		
-				assertThat(passwordEncoder.matches("123Stella", 
-						utentiRepository.findByUserId("Nicola").getPassword()))
+				assertThat(passwordEncoder.matches("Michele", 
+						utentiRepository.findByUserId("Michele").getPassword()))
 				.isEqualTo(true);
 	}
 	
 	String JsonData2 = 
 			"{\n" + 
 			"    \"userId\": \"Admin\",\n" + 
-			"    \"password\": \"VerySecretPwd\",\n" + 
+			"    \"password\": \"Admin\",\n" + 
 			"    \"attivo\": \"Si\",\n" + 
 			"    \"ruoli\": [\n" + 
 			"            \"USER\",\n" + 
@@ -121,8 +121,8 @@ public class UtentiControllerTest
 	String JsonDataUsers = 
 			"[\n" + 
 			"	{\n" + 
-			"	    \"userId\": \"Nicola\",\n" + 
-			"	    \"password\": \"123Stella\",\n" + 
+			"	    \"userId\": \"Michele\",\n" + 
+			"	    \"password\": \"Michele\",\n" + 
 			"	    \"attivo\": \"Si\",\n" + 
 			"	    \"ruoli\": [\n" + 
 			"		    \"USER\"\n" + 
@@ -130,7 +130,7 @@ public class UtentiControllerTest
 			"	},\n" + 
 			"	{\n" + 
 			"	    \"userId\": \"Admin\",\n" + 
-			"	    \"password\": \"VerySecretPwd\",\n" + 
+			"	    \"password\": \"Admin\",\n" + 
 			"	    \"attivo\": \"Si\",\n" + 
 			"	    \"ruoli\": [\n" + 
 			"		    \"USER\",\n" + 
@@ -150,7 +150,7 @@ public class UtentiControllerTest
 				 //UTENTE 1
 				.andExpect(jsonPath("$[0].id").exists())
 				.andExpect(jsonPath("$[0].userId").exists())
-				.andExpect(jsonPath("$[0].userId").value("Nicola"))
+				.andExpect(jsonPath("$[0].userId").value("Michele"))
 				.andExpect(jsonPath("$[0].password").exists())
 				.andExpect(jsonPath("$[0].attivo").exists())
 				.andExpect(jsonPath("$[0].attivo").value("Si"))
@@ -169,7 +169,7 @@ public class UtentiControllerTest
 				.andExpect(jsonPath("$[1].ruoli[1]").value("ADMIN")) 
 				.andReturn();
 		
-				assertThat(passwordEncoder.matches("VerySecretPwd", 
+				assertThat(passwordEncoder.matches("Admin", 
 						utentiRepository.findByUserId("Admin").getPassword()))
 				.isEqualTo(true);
 	}

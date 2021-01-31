@@ -65,12 +65,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 
 		manager.createUser(users
 				.username("ReadUser")
-				.password(new BCryptPasswordEncoder().encode("BimBumBam_2018"))
+				.password(new BCryptPasswordEncoder().encode("ReadUser"))
 				.roles("USER").build());
 
 		manager.createUser(users
 				.username("Admin")
-				.password(new BCryptPasswordEncoder().encode("MagicaBula_2018"))
+				.password(new BCryptPasswordEncoder().encode("Admin"))
 				.roles("USER", "ADMIN").build());
 
 		return manager;

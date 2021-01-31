@@ -23,7 +23,7 @@ public class Utenti
 	@NotNull(message = "{NotNull.Articoli.userId.Validation}")
 	private String userId;
 	
-	@Size(min = 8, max = 80, message = "{Size.Utenti.password.Validation}")
+	@Size(min = 5, max = 80, message = "{Size.Utenti.password.Validation}")
 	private String password;
 	
 	private String attivo;

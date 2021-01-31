@@ -15,6 +15,6 @@ spring:
       authentication-database: admin
       database: gestfid
       host: localhost
-      password: 123_Stella
+      password: WebClient
       port: 27017
       username: WebClient
