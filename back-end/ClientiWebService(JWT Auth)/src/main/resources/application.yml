@@ -1,0 +1,40 @@
+# ==============================================================
+# = Clienti Web Service - Versione Base Reactor Web Flux
+# ==============================================================
+
+server:
+  port: 5071
+
+spring:
+  application:
+    name: ClientiWebService
+  data:
+    mongodb:
+      authentication-database: admin
+      database: gestfid
+      host: localhost
+      password: 123_Stella
+      port: 27017
+      username: WebClient
+      
+# ==============================================================
+# = Parametri Sicurezza JWT 
+# ==============================================================
+sicurezza:
+    uri: /auth
+    refresh: /refresh
+    header: Authorization
+    prefix: Bearer 
+    expiration: 86400
+    secret: 123_Stella
+
+# ==============================================================
+# = Livello Log di Sicurezza
+# ==============================================================  
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.data.mongodb.core.ReactiveMongoTemplate: DEBUG
+
+ 
+    
