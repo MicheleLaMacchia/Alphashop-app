@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { authUser, saveUserInfo } from "../services/authservices";
+import { JWTAuthUser, saveUserInfo } from "../services/authservices";
 import "./LoginComponent.css";
 
 const LoginComponent = (props) => {
@@ -9,9 +9,9 @@ const LoginComponent = (props) => {
   const [isNotLogged, setIsNotLogged] = useState(false);
 
   const login = () => {
-    authUser(userId, password)
-      .then(() => {
-        saveUserInfo(userId, password);
+    JWTAuthUser(userId, password)
+      .then((res) => {
+        saveUserInfo(userId, res.data.token);
         props.history.push(`/welcome/${userId}`);
       })
       .catch(() => {

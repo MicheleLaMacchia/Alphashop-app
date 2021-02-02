@@ -7,6 +7,8 @@ import AuthRoute from "./Login/AuthRoute";
 import LoginComponent from "./Login/LoginComponent";
 import LogoutComponent from "./Logout/LogoutComponent";
 import WelcomeComponent from "./Welcome/Welcome";
+import { USER, ADMIN } from "./services/authservices";
+import ForbiddenComponent from "./Forbidden/ForbiddenComponent";
 
 const GestFidApp = () => {
   return (
@@ -17,12 +19,18 @@ const GestFidApp = () => {
           <Route path="/" exact component={LoginComponent} />
           <Route path="/login" component={LoginComponent} />
           <Route path="/logout" component={LogoutComponent} />
-          <AuthRoute path="/welcome/:userid" component={WelcomeComponent} />
+          <AuthRoute
+            path="/welcome/:userid"
+            component={WelcomeComponent}
+            role={USER}
+          />
           <AuthRoute
             path="/inscliente/:codfid"
             component={DatiClienteComponent}
+            role={ADMIN}
           />
-          <AuthRoute path="/clienti" component={ClientiComponent} />
+          <AuthRoute path="/clienti" component={ClientiComponent} role={USER} />
+          <Route path="/forbidden" component={ForbiddenComponent} />
           <Route component={ErrorComponent} />
         </Switch>
         <FooterComponent />
